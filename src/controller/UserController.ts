@@ -4,12 +4,14 @@ import { User } from '../entity/User';
 import { validate } from 'class-validator';
 
 export class UserController {
+
   static getAll = async (req: Request, res: Response) => {
+    
     const userRepository = getRepository(User);
     let users;
 
     try {
-      users = await userRepository.find({ select: ['id', 'username', 'role', 'createdAt'] });
+      users = await userRepository.find({ select: ['id', 'username', 'createdAt'] });
     } catch (e) {
       res.status(404).json({ message: 'Somenthing goes wrong!' });
     }
@@ -33,12 +35,12 @@ export class UserController {
   };
 
   static new = async (req: Request, res: Response) => {
-    const { username, password, role } = req.body;
+
+    const { username, password } = req.body;
     const user = new User();
 
     user.username = username;
     user.password = password;
-    user.role = role;
 
     // Validate
     const validationOpt = { validationError: { target: false, value: false } };
@@ -46,8 +48,6 @@ export class UserController {
     if (errors.length > 0) {
       return res.status(400).json(errors);
     }
-
-    // TODO: HASH PASSWORD
 
     const userRepository = getRepository(User);
     try {
@@ -63,14 +63,13 @@ export class UserController {
   static edit = async (req: Request, res: Response) => {
     let user;
     const { id } = req.params;
-    const { username, role } = req.body;
+    const { username } = req.body;
 
     const userRepository = getRepository(User);
     // Try get user
     try {
       user = await userRepository.findOneOrFail(id);
       user.username = username;
-      user.role = role;
     } catch (e) {
       return res.status(404).json({ message: 'User not found' });
     }

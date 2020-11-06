@@ -6,11 +6,13 @@ import config from '../config/config';
 import { validate } from 'class-validator';
 
 class AuthController {
+
   static login = async (req: Request, res: Response) => {
+
     const { username, password } = req.body;
 
     if (!(username && password)) {
-      return res.status(400).json({ message: ' Username & Password are required!' });
+      return res.status(400).json({ message: 'Username & Password are required!' });
     }
 
     const userRepository = getRepository(User);
@@ -19,7 +21,7 @@ class AuthController {
     try {
       user = await userRepository.findOneOrFail({ where: { username } });
     } catch (e) {
-      return res.status(400).json({ message: ' Username or password incorecct!' });
+      return res.status(400).json({ message: 'Username or password incorrect!' });
     }
 
     // Check password

@@ -1,7 +1,7 @@
 {
-  "name": "login_roles",
+  "name": "api-node-mysql",
   "version": "0.0.1",
-  "description": "Awesome project developed with TypeORM.",
+  "description": "Api REST with Node.js, MySQL and TypeORM.",
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.6",

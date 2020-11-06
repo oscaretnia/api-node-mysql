@@ -1,3 +1,3 @@
 export default {
-  jwtSecret: 'BDPEK@'
+  jwtSecret: 'MI_CLAVE_SECRETA'
 };

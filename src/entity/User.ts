@@ -20,10 +20,6 @@ export class User {
   password: string;
 
   @Column()
-  @IsNotEmpty()
-  role: string;
-
-  @Column()
   @CreateDateColumn()
   createdAt: Date;
 

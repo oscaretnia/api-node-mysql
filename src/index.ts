@@ -9,13 +9,15 @@ const PORT = process.env.PORT || 3000;
 
 createConnection()
   .then(async () => {
+
     // create express app
     const app = express();
+
     // Middlewares
     app.use(cors());
     app.use(helmet());
-
     app.use(express.json());
+    
     // Routes
     app.use('/', routes);
 
