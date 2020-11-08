@@ -34,7 +34,7 @@ Note that you have to add a space between `JWT` and your auth token like the exa
 | ------ | ------ |
 | x-access-token | `token` |
 
-### Endpoints
+### Endpoints products
 
 | **Name** | **Type** | **URL** |
 | ------ | ------ | ------ |
@@ -43,3 +43,13 @@ Note that you have to add a space between `JWT` and your auth token like the exa
 | Get all  | GET | `BASE_URL`/api/product **(session required)** |
 | Edit | PATCH | `BASE_URL`/api/product/:id **(session required)** |
 | Delete | DELETE | `BASE_URL`/api/product/:id **(session required)** |
+
+### Endpoints users
+
+| **Name** | **Type** | **URL** |
+| ------ | ------ | ------ |
+| Save | POST | `BASE_URL`/api/user **(session required)** |
+| Get one  | GET | `BASE_URL`/api/user/:id **(session required)** |
+| Get all  | GET | `BASE_URL`/api/user **(session required)** |
+| Edit | PATCH | `BASE_URL`/api/user/:id **(session required)** |
+| Delete | DELETE | `BASE_URL`/api/user/:id **(session required)** |
