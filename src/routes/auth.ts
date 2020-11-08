@@ -7,6 +7,9 @@ const router = Router();
 // login
 router.post('/login', AuthController.login);
 
+// logout
+router.post('/logout', [checkJwt], AuthController.logout);
+
 // Change password
 router.post('/change-password', [checkJwt], AuthController.changePassword);
 

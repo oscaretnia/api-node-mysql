@@ -1,6 +1,8 @@
 {
   "name": "api-node-mysql",
   "version": "0.0.1",
+  "license": "MIT",
+  "author": "Oscar Sepulveda Perez <sepulvedaperezoscar@gmail.com>",
   "description": "Api REST with Node.js, MySQL and TypeORM.",
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
@@ -8,17 +10,24 @@
     "@types/express": "^4.17.3",
     "@types/jsonwebtoken": "^8.3.8",
     "@types/node": "^8.10.59",
+    "@types/body-parser": "^1.19.0",
+    "@types/multer": "^1.4.4",
     "ts-node": "3.3.0",
     "ts-node-dev": "^1.0.0-pre.44",
     "typescript": "^3.8.3"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
     "class-validator": "^0.11.1",
+    "connect-multiparty": "^2.2.0",
     "cors": "^2.8.5",
     "express": "^4.15.4",
+    "ext-name": "^5.0.0",
+    "file-extension": "^4.0.5",
     "helmet": "^3.21.3",
     "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.2",
     "mysql": "^2.14.1",
     "reflect-metadata": "^0.1.10",
     "typeorm": "0.2.24"

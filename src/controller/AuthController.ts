@@ -12,7 +12,7 @@ class AuthController {
     const { username, password } = req.body;
 
     if (!(username && password)) {
-      return res.status(400).json({ message: 'Username & Password are required!' });
+      return res.status(400).json({ success: false, message: 'Username & Password are required!' });
     }
 
     const userRepository = getRepository(User);
@@ -21,18 +21,23 @@ class AuthController {
     try {
       user = await userRepository.findOneOrFail({ where: { username } });
     } catch (e) {
-      return res.status(400).json({ message: 'Username or password incorrect!' });
+      return res.status(400).json({ success: false, message: 'Username or password incorrect!' });
     }
 
     // Check password
     if (!user.checkPassword(password)) {
-      return res.status(400).json({ message: 'Username or Password are incorrect!' });
+      return res.status(400).json({ success: false, message: 'Username or Password are incorrect!' });
     }
 
     const token = jwt.sign({ userId: user.id, username: user.username }, config.jwtSecret, { expiresIn: '1h' });
 
-    res.json({ message: 'OK', token });
+    res.json({ success: true, message: 'OK', token });
   };
+
+  static logout = async (req: Request, res: Response) => {
+    console.log(req);
+    res.send({success: true})
+  }
 
   static changePassword = async (req: Request, res: Response) => {
     const { userId } = res.locals.jwtPayload;

@@ -1,12 +1,12 @@
 import { Router } from 'express';
 import auth from './auth';
 import user from './user';
-import product from './products';
+import product from './product';
 
 const routes = Router();
 
-routes.use('/auth', auth);
-routes.use('/users', user);
-routes.use('/products', product);
+routes.use('/api/auth', auth);
+routes.use('/api/user', user);
+routes.use('/api/product', product);
 
 export default routes;

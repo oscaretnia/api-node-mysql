@@ -2,6 +2,7 @@ import { getRepository } from 'typeorm';
 import { Request, Response } from 'express';
 import { Product } from '../entity/Product';
 import { validate } from 'class-validator';
+import config from '../config/config';
 
 export class ProductController {
 
@@ -17,7 +18,7 @@ export class ProductController {
         }
     
         if (products.length > 0) {
-          res.send(products);
+          res.send({ data: products, success: true });
         } else {
           res.status(404).json({ message: 'Not result' });
         }
@@ -28,7 +29,7 @@ export class ProductController {
         const productRepository = getRepository(Product);
         try {
           const product = await productRepository.findOneOrFail(id);
-          res.send(product);
+          res.json({ data: product, success: true});
         } catch (e) {
           res.status(404).json({ message: 'Not result' });
         }
@@ -44,7 +45,7 @@ export class ProductController {
         product.description = description;
         product.reference = reference;
         product.locationStorage = locationStorage;
-        product.image = image;
+        product.image = `${config.uploads}${image}`;
     
         // Validate
         const validationOpt = { validationError: { target: false, value: false } };
@@ -60,10 +61,12 @@ export class ProductController {
           return res.status(409).json({ message: 'Code product already exist' });
         }
         // All ok
-        res.status(200).json({ message: 'Product created' });
+        res.status(200).json({ message: 'Product created', success: true });
       };
     
       static edit = async (req: Request, res: Response) => {
+
+        console.log(req.body)
 
         let product;
         const { id } = req.params;
@@ -79,14 +82,16 @@ export class ProductController {
             product.description = description;
             product.reference = reference;
             product.locationStorage = locationStorage;
-            product.image = image;
+            product.image = `${config.uploads}${image}`;
         } catch (e) {
+          console.log(e)
           return res.status(404).json({ message: 'Product not found' });
         }
         const validationOpt = { validationError: { target: false, value: false } };
         const errors = await validate(product, validationOpt);
     
         if (errors.length > 0) {
+          console.log(errors)
           return res.status(400).json(errors);
         }
     
@@ -97,7 +102,7 @@ export class ProductController {
           return res.status(409).json({ message: 'Code product already in use' });
         }
     
-        res.status(201).json({ message: 'Product update' });
+        res.status(201).json({ message: 'Product update', success: true });
       };
     
       static delete = async (req: Request, res: Response) => {
@@ -114,7 +119,7 @@ export class ProductController {
     
         // Remove user
         productRepository.delete(id);
-        res.status(201).json({ message: 'Product deleted' });
+        res.status(201).json({ message: 'Product deleted', success: true });
       };    
 
 }

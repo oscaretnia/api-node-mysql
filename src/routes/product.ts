@@ -1,4 +1,5 @@
 import { checkJwt } from '../middlewares/jwt';
+import { upload } from '../middlewares/upload';
 import { ProductController } from '../controller/ProductController';
 import { Router } from 'express';
 
@@ -11,10 +12,10 @@ router.get('/', [checkJwt], ProductController.getAll);
 router.get('/:id', [checkJwt], ProductController.getById);
 
 // Create a new product
-router.post('/', [checkJwt], ProductController.new);
+router.post('/', [checkJwt, upload.single('image')], ProductController.new);
 
 // Edit product
-router.patch('/:id', [checkJwt], ProductController.edit);
+router.patch('/:id', [checkJwt, upload.single('image')], ProductController.edit);
 
 // Delete product
 router.delete('/:id', [checkJwt], ProductController.delete);
