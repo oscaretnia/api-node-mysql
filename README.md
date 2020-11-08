@@ -1,5 +1,7 @@
 # API Node.js - MySQL - JWT
 
+Base de datos: [link](https://github.com/oscaretnia/api-node-mysql/blob/master/api_node_mysql.sql)
+
 ### Installation
 
 Instalar dependencias y correr el servidor.
