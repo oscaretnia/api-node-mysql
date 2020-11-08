@@ -1,7 +1,43 @@
-# Awesome Project Build with TypeORM
+# API Node.js - MySQL - JWT
 
-Steps to run this project:
+### Installation
 
-1. Run `npm i` command
-2. Setup database settings inside `ormconfig.json` file
-3. Run `npm start` command
+Instalar dependencias y correr el servidor.
+
+```sh
+$ npm install
+$ npm run serve
+```
+
+
+API con autenticación de usuarios mediante token y gestion de productos, para el desarrollo se empleo:
+
+  - Express
+  - MySQL
+  - TypeORM
+  - JSON Web Token (JWT)
+
+### Authentication
+
+| **Name** | **Type** | **URL** |
+| ------ | ------ | ------ |
+| Login | POST | `BASE_URL`/api/auth/login |
+| Logout | GET | `BASE_URL`/api/auth/logout **(session required)** |
+
+### Headers
+
+Note that you have to add a space between `JWT` and your auth token like the example below.
+
+| **key** | **value** |
+| ------ | ------ |
+| x-access-token | `token` |
+
+### Endpoints
+
+| **Name** | **Type** | **URL** |
+| ------ | ------ | ------ |
+| Save | POST | `BASE_URL`/api/product **(session required)** |
+| Get one  | GET | `BASE_URL`/api/product/:id **(session required)** |
+| Get all  | GET | `BASE_URL`/api/product **(session required)** |
+| Edit | PATCH | `BASE_URL`/api/product/:id **(session required)** |
+| Delete | DELETE | `BASE_URL`/api/product/:id **(session required)** |
